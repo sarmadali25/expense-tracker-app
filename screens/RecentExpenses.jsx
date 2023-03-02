@@ -4,14 +4,24 @@ import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput"
 import { ExpenseContext } from "../store/expense-context"
 import { getDateMinusDays } from "../util/date"
 import { fetchExpenses } from "../util/http"
+import LoadingOverlay from "../UI/LoadingOverlay"
+import ErrorOverlay from "../UI/ErrorOverlay"
 
 const RecentExpenses = () => {
+	const [isFetching, setIsFetching] = useState(true)
+	const [error, setError] = useState()
 	const expensesCtx = useContext(ExpenseContext)
 
 	useEffect(() => {
 		async function callFetchExpenses() {
-			const expenses = await fetchExpenses()
-			expensesCtx.setExpenses(expenses)
+			setIsFetching(true)
+			try {
+				const expenses = await fetchExpenses()
+				expensesCtx.setExpenses(expenses)
+			} catch (error) {
+				setError("Could Not Fetch Expenses!!")
+			}
+			setIsFetching(false)
 		}
 
 		callFetchExpenses()
@@ -23,6 +33,18 @@ const RecentExpenses = () => {
 
 		return expense.date > date7DaysAgo
 	})
+
+	function errorHandler() {
+		setError(null)
+	}
+
+	if (error && !isFetching) {
+		return <ErrorOverlay message={error} onConfirm={errorHandler} />
+	}
+
+	if (isFetching) {
+		return <LoadingOverlay />
+	}
 
 	return (
 		<ExpensesOutput

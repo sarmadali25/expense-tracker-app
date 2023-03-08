@@ -33,7 +33,7 @@ const RecentExpenses = () => {
 
 		return expense.date > date7DaysAgo
 	})
-
+	console.log("sarmad")
 	function errorHandler() {
 		setError(null)
 	}

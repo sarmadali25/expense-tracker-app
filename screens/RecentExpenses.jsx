@@ -34,6 +34,7 @@ const RecentExpenses = () => {
 		return expense.date > date7DaysAgo
 	})
 	console.log("sarmad")
+	console.log("nabeel")
 	function errorHandler() {
 		setError(null)
 	}

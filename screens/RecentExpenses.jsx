@@ -35,6 +35,7 @@ const RecentExpenses = () => {
 	})
 	console.log("sarmad")
 	console.log("nabeel")
+	console.log("sunny")
 	function errorHandler() {
 		setError(null)
 	}

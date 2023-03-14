@@ -11,7 +11,7 @@ const ExpenseItem = ({ id, description, amount, date }) => {
 			expenseId: id,
 		})
 	}
-
+	console.log("id", id)
 	return (
 		<Pressable
 			onPress={expensePressHandler}

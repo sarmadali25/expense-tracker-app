@@ -824,6 +824,7 @@ const Sort = ({
 
 	const history = useHistory()
 	console.log("hello")
+	console.log("hello1")
 	return (
 		<FormControl
 			data-testid="sf-product-list-sort"
